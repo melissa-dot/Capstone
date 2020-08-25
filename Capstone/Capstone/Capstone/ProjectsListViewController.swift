@@ -15,14 +15,5 @@ class ProjectsListViewController: UITableViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        <#code#>
-    }
     
-
 }
-

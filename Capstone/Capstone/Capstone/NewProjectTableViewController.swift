@@ -10,20 +10,6 @@ import UIKit
 
 class NewProjectTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    @IBAction func cancel() {
-        dismiss(animated: true, completion: nil)
-    }
-
-  
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -32,9 +18,53 @@ class NewProjectTableViewController: UITableViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        let text = nameTextField.text ?? ""
-        saveButton.isEnabled = !text.isEmpty
+    var project: Project?
+    var customer: Customer?
+    
+    override func viewDidLoad() {
+        if let project = project, let customer = customer {
+            self.nameTextField.text = project.name
+            self.phoneTextField.text = customer.phone
+            
+            // add all values for project AND customer
+            
+        }
+        super.viewDidLoad()
+
     }
+    
+    @IBAction func cancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
+        guard let name = nameTextField.text, !name.isEmpty,
+            let phoneNumber = phoneTextField.text, !phoneNumber.isEmpty
+            
+            // add all values for project AND? customer
+        
+        else {
+            return
+        }
+        if let project = project,
+            let customer = customer {
+            project.name = name
+            
+            //add all values for project AND customer
+            
+            try? AppDelegate.context.save()
+        } else {
+            //init all properties
+            
+        //    _ = Project(date: , id: <#T##String#>, name: name, note: <#T##String#>)
+            
+         //   _ = Customer( )
+            
+        }
+        
+    //    saveButton.isEnabled = !text.isEmpty
+    }
+    
+
     
 }

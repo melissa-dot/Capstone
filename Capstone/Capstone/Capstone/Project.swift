@@ -10,23 +10,24 @@ import Foundation
 import CoreData
 
 class Project: NSManagedObject {
+    
     @NSManaged var date: Date?
     @NSManaged var id: String
     @NSManaged var name: String
     @NSManaged var note: String
     
+    convenience init(date: Date, id: String, name: String, note: String, context: NSManagedObjectContext = AppDelegate.context) {
+        self.init(context: context)
+        self.date = date
+        
+        // add all properties equal to self ^^
+        
+        try? context.save()
+    }
+    
+    
+    
+    
     @NSManaged var customer: Customer
-    
-    
 }
-
-class Customer: NSManagedObject {
-    @NSManaged var address: String?
-    @NSManaged var email: String
-    @NSManaged var id: String
-    @NSManaged var name: String
-    @NSManaged var phone: String
     
-    @NSManaged var projects: [Project]
-    
-}

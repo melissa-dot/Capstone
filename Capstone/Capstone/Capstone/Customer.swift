@@ -18,6 +18,15 @@ class Customer: NSManagedObject {
     
     @NSManaged var projects: [Project]
     
-    // Copy "self.name" from project 
+    convenience init(id: String, email: String, name: String, phone: String,context: NSManagedObjectContext = AppDelegate.context)
+    {
+        self.init(context: context)
+        self.address = address
+        self.email = email
+        self.id = id
+        self.name = name
+        self.phone = phone
+    }
+    
 }
 

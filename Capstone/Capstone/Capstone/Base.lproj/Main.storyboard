@@ -279,9 +279,6 @@
                                                 <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="whe-x1-erF">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="datePickerChanged:" destination="YJa-MM-xEU" eventType="valueChanged" id="fO0-nr-63R"/>
-                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                         </tableViewCellContentView>

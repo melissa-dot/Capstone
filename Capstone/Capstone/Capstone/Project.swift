@@ -19,14 +19,12 @@ class Project: NSManagedObject {
     convenience init(date: Date, id: String, name: String, note: String, context: NSManagedObjectContext = AppDelegate.context) {
         self.init(context: context)
         self.date = date
-        
-        // add all properties equal to self ^^
-        
+        self.id = id
+        self.name = name
+        self.note = note
+                
         try? context.save()
     }
-    
-    
-    
     
     @NSManaged var customer: Customer
 }

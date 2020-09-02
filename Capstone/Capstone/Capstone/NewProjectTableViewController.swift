@@ -20,6 +20,7 @@ class NewProjectTableViewController: UITableViewController {
     
     var project: Project?
     var customer: Customer?
+    let projectCoreDataManager = ProjectCoreDataManager()
     
     override func viewDidLoad() {
         if let project = project, let customer = customer {
@@ -44,38 +45,33 @@ class NewProjectTableViewController: UITableViewController {
         guard let name = nameTextField.text, !name.isEmpty,
             let phoneNumber = phoneTextField.text, !phoneNumber.isEmpty,
             let email = emailTextField.text, !email.isEmpty,
-            let address = addressTextField.text, !address.isEmpty,
-            let note = notesTextView.text, !note.isEmpty
+            let address = addressTextField.text, !address.isEmpty
             
         else {
             return
         }
         
-        if let project = project,
-            let customer = customer {
+        if let project = project {
+            projectCoreDataManager.updateProject()
             project.date = datePicker.date
-            project.note = note
+            project.note = notesTextView.text
             project.name = name
             
             customer.address = address
             customer.email = email
             customer.name = name
             customer.phone = phoneNumber
-                        
         } else {
-            
-            _ = Project(date: datePicker.date, id: UUID().uuidString, name: name, note: note)
-            
-            _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
-            
+            saveNewProject(name: name)
         }
-        
-        do {
-            print("saved")
-            try AppDelegate.context.save() }
-        catch {fatalError("Failed to save project: \(error)")}
-        dismiss(animated: true, completion: nil)
 
+    }
+    
+    func saveNewProject(name: String) {
+        projectCoreDataManager.saveNewProject(name: name, date: datePicker.date, note: notesTextView.text)
+        
+       // _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
+        
     }
     
 

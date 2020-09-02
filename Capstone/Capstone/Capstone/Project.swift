@@ -16,12 +16,19 @@ class Project: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var note: String
     
-    convenience init(date: Date, id: String, name: String, note: String, context: NSManagedObjectContext = AppDelegate.context) {
+    convenience init(name: String, date: Date? = nil, note: String? = nil, customer: Customer? = nil, context: NSManagedObjectContext = AppDelegate.context) {
         self.init(context: context)
-        self.date = date
-        self.id = id
         self.name = name
-        self.note = note
+        if let date = date {
+            self.date = date
+        }
+        self.id = UUID().uuidString
+        if let note = note {
+            self.note = note
+        }
+        if let customer = customer {
+            self.customer = customer
+        }
                 
         try? context.save()
     }

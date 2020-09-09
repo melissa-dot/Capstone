@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-class Project: NSManagedObject {
+@objc(Project)
+public class Project: NSManagedObject {
     
     @NSManaged var date: Date?
     @NSManaged var id: String

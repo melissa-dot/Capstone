@@ -52,27 +52,25 @@ class NewProjectTableViewController: UITableViewController {
         }
         
         if let project = project {
-            projectCoreDataManager.updateProject()
+            ProjectCoreDataManager.updateProject()
             project.date = datePicker.date
             project.note = notesTextView.text
             project.name = name
-            
-            customer.address = address
-            customer.email = email
-            customer.name = name
-            customer.phone = phoneNumber
+
+            customer?.address = address
+            customer?.email = email
+            customer?.name = name
+            customer?.phone = phoneNumber
         } else {
-            saveNewProject(name: name)
+             _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
+            
+            ProjectCoreDataManager.saveNewProject(name: name, date: datePicker.date, note: notesTextView.text)
+            
         }
+         dismiss(animated: true, completion: nil)
 
     }
     
-    func saveNewProject(name: String) {
-        projectCoreDataManager.saveNewProject(name: name, date: datePicker.date, note: notesTextView.text)
-        
-       // _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
-        
-    }
     
 
     

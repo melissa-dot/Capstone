@@ -10,35 +10,34 @@ import Foundation
 import CoreData
 
 struct ProjectCoreDataManager {
-    func saveNewProject(name: String, date: Date? = nil, note: String? = nil) {
+   static func saveNewProject(name: String, date: Date? = nil, note: String? = nil) {
         _ = Project(name: name, date: date, note: note)
         save()
     }
         
-    func updateProject() {
+   static func updateProject() {
         
     }
     
-    func fetchAllProjects() -> [Project] {
+    static func fetchAllProjects() -> [Project] {
         let moc = AppDelegate.context
-        let projectFetch: NSFetchRequest<Project> = Project.fetchRequest()
+        let projectFetch: NSFetchRequest<Project> = NSFetchRequest<Project>(entityName: "Project")
         do {
-            project = try moc.fetch(projectFetch) as! [Project]
+           let projects = try moc.fetch(projectFetch) 
             
-            self.datePicker.date = project.date ?? Date()
-            self.notesTextView.text = project.note
-            self.nameTextField.text = project.name
-            
+            return projects
+
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
+        return []
     }
     
-    func deleteProject() {
-        
+   static func deleteProject() {
+    let moc = AppDelegate.context.deletedObjects
     }
     
-    func save() {
+   static func save() {
         do {
             try AppDelegate.context.save()
         } catch {

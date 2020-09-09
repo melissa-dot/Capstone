@@ -12,7 +12,7 @@ import CoreData
 class ProjectsListViewController: UITableViewController {
 
     var projects = [Project]()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +20,8 @@ class ProjectsListViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       
+        super.viewWillAppear(animated)
+        projects = ProjectCoreDataManager.fetchAllProjects()
         self.tableView.reloadData()
     }
     
@@ -29,4 +30,11 @@ class ProjectsListViewController: UITableViewController {
         
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rowTemplate", for: indexPath)
+        let project = projects[indexPath.row]
+        cell.textLabel?.text = project.name
+        return cell 
+    }
 }
+

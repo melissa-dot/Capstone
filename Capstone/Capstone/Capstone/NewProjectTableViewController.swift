@@ -37,6 +37,10 @@ class NewProjectTableViewController: UITableViewController {
 
     }
     
+    @IBAction func scheduledDateToggle(_ sender: UISwitch) {
+        datePicker.isHidden = !sender.isOn
+    }
+    
     @IBAction func cancel() {
         dismiss(animated: true, completion: nil)
     }
@@ -51,9 +55,11 @@ class NewProjectTableViewController: UITableViewController {
             return
         }
         
+        let date : Date? = datePicker.isHidden ? nil : datePicker.date
+        
         if let project = project {
             ProjectCoreDataManager.updateProject()
-            project.date = datePicker.date
+            project.date = date
             project.note = notesTextView.text
             project.name = name
 
@@ -64,7 +70,7 @@ class NewProjectTableViewController: UITableViewController {
         } else {
              _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
             
-            ProjectCoreDataManager.saveNewProject(name: name, date: datePicker.date, note: notesTextView.text)
+            ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text)
             
         }
          dismiss(animated: true, completion: nil)

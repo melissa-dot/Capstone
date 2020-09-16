@@ -22,7 +22,7 @@ public class Project: NSManagedObject {
         self.name = name
         if let date = date {
             self.date = date
-        }
+        } 
         self.id = UUID().uuidString
         if let note = note {
             self.note = note
@@ -30,8 +30,14 @@ public class Project: NSManagedObject {
         if let customer = customer {
             self.customer = customer
         }
-                
-        try? context.save()
+        do {
+           try context.save()
+        }
+        catch {
+            print(error)
+        }
+        print(self.date)
+        print(Date.distantPast)
     }
     
     @NSManaged var customer: Customer

@@ -52,6 +52,9 @@ class ProjectsListViewController: UITableViewController {
     /// sorts projects by date, if project has one, per section.
     func sortByDate() {
         var tempProjects = projects
+        let noDateProjects = projects.filter({ $0.date == nil })
+        print(noDateProjects)
+        sortedByDate[Date.distantPast] = noDateProjects
         tempProjects.removeAll(where: { $0.date == nil })
         while tempProjects.count > 0 {
             guard let firstProject = tempProjects.first else { return }
@@ -60,8 +63,7 @@ class ProjectsListViewController: UITableViewController {
             sortedByDate[projectDate] = projectsSameDate
             tempProjects.removeAll(where: { Calendar.current.isDate($0.date!, inSameDayAs: projectDate) })
         }
-        let noDateProjects = projects.filter({ $0.date == nil })
-        sortedByDate[Date.distantPast] = noDateProjects
+
     }
        
        func date(fromString: String) -> Date? {
@@ -123,7 +125,7 @@ extension ProjectsListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rowTemplate", for: indexPath)
-        cell.backgroundColor = .magenta
+        cell.backgroundColor = .blue
         
         let project = self.project(forIndexPath: indexPath)
         cell.textLabel?.text = project.name

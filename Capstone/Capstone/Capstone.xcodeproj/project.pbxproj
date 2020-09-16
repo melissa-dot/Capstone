@@ -18,6 +18,7 @@
 		2A7B0A3B24D1C164004ECB88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A7B0A3A24D1C164004ECB88 /* Assets.xcassets */; };
 		2A7B0A3E24D1C164004ECB88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7B0A3C24D1C164004ECB88 /* LaunchScreen.storyboard */; };
 		2A7B0A4824EC2FF4004ECB88 /* NewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */; };
+		2A7E5EB4250BB97A005B1ADC /* ProjectListOrganized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */; };
 		2AD0E11A24F4919400B26EF4 /* CustomerInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		2A7B0A3D24D1C164004ECB88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A7B0A3F24D1C164004ECB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectTableViewController.swift; sourceTree = "<group>"; };
+		2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListOrganized.swift; sourceTree = "<group>"; };
 		2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +73,7 @@
 				2A7B0A3124D1C161004ECB88 /* AppDelegate.swift */,
 				2A7B0A3324D1C161004ECB88 /* SceneDelegate.swift */,
 				2A7B0A3724D1C161004ECB88 /* Main.storyboard */,
+				2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */,
 				2A7B0A3524D1C161004ECB88 /* ProjectsListViewController.swift */,
 				2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */,
 				2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */,
@@ -165,6 +168,7 @@
 				2A7B0A4824EC2FF4004ECB88 /* NewProjectTableViewController.swift in Sources */,
 				2A7B0A3424D1C161004ECB88 /* SceneDelegate.swift in Sources */,
 				2A2D8A7424F4975200FE3BE6 /* Project.swift in Sources */,
+				2A7E5EB4250BB97A005B1ADC /* ProjectListOrganized.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

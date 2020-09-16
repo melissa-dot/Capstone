@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        #warning("remove for production")
         ProjectCoreDataManager.saveNewProject(name: "name", date: Date(), note: "note")
         var projects = ProjectCoreDataManager.fetchAllProjects()
         print(projects.map({ $0.name }))

@@ -33,8 +33,10 @@ struct ProjectCoreDataManager {
         return []
     }
     
-   static func deleteProject() {
-    let moc = AppDelegate.context.deletedObjects
+    static func deleteProject(_ project: Project) {
+        AppDelegate.context.delete(project)
+        save()
+    
     }
     
    static func save() {

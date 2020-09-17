@@ -19,8 +19,9 @@ class NewProjectTableViewController: UITableViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var project: Project?
-    var customer: Customer?
     let projectCoreDataManager = ProjectCoreDataManager()
+    
+    var didAddOrUpdateProject : (() -> ())?
     
     override func viewDidLoad() {
         
@@ -30,12 +31,6 @@ class NewProjectTableViewController: UITableViewController {
             self.nameTextField.text = project.name
         }
         
-        if let customer = customer {
-            self.addressTextField.text = customer.address
-            self.emailTextField.text = customer.email
-            self.nameTextField.text = customer.name
-            self.phoneTextField.text = customer.phone
-        }
         super.viewDidLoad()
 
     }
@@ -58,10 +53,7 @@ class NewProjectTableViewController: UITableViewController {
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-        guard let name = nameTextField.text, !name.isEmpty,
-            let phoneNumber = phoneTextField.text, !phoneNumber.isEmpty,
-            let email = emailTextField.text, !email.isEmpty,
-            let address = addressTextField.text, !address.isEmpty
+        guard let name = nameTextField.text, !name.isEmpty
             
         else {
             return
@@ -75,19 +67,15 @@ class NewProjectTableViewController: UITableViewController {
             project.note = notesTextView.text
             project.name = name
 
-            customer?.address = address
-            customer?.email = email
-            customer?.name = name
-            customer?.phone = phoneNumber
             ProjectCoreDataManager.save()
             
         } else {
-             _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
             
             ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text)
             
         }
          dismiss(animated: true, completion: nil)
+        self.didAddOrUpdateProject?()
 
     }
     

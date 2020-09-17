@@ -33,10 +33,7 @@ class ProjectsListViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        projects = ProjectCoreDataManager.fetchAllProjects()
-        sortByDate()
-        //projects = projects.sorted { $0.name.lowercased() < $1.name.lowercased() }
-        self.tableView.reloadData()
+        self.reloadProjects()
     }
     
     func sortByAlphabet() {
@@ -68,7 +65,28 @@ class ProjectsListViewController: UITableViewController {
            return dateFormatter.date(from: fromString)
        }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addButtonTapped",
+        let navController = segue.destination as? UINavigationController,
+        let viewController = navController.topViewController as? NewProjectTableViewController {
+            viewController.didAddOrUpdateProject = {
+                self.reloadProjects()
+                
+            }
+        }
+        
+    }
+    func reloadProjects() {
+        projects = ProjectCoreDataManager.fetchAllProjects()
+             sortByDate()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+             
+    }
 }
+
+
 
 extension ProjectsListViewController {
     

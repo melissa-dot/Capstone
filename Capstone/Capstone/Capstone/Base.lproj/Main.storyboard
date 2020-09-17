@@ -42,7 +42,7 @@
                     <navigationItem key="navigationItem" title="Projects" id="CKM-uZ-6Gk">
                         <barButtonItem key="rightBarButtonItem" title="plus" image="plus" catalog="system" id="PQF-Xn-YE4">
                             <connections>
-                                <segue destination="wzc-WT-0yI" kind="show" id="c2X-Xx-Aev"/>
+                                <segue destination="wzc-WT-0yI" kind="show" identifier="addButtonTapped" id="c2X-Xx-Aev"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -29,8 +29,6 @@ class ProjectsListViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-     //   print("Documents Directory: ", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,21 +67,7 @@ class ProjectsListViewController: UITableViewController {
        func date(fromString: String) -> Date? {
            return dateFormatter.date(from: fromString)
        }
-    
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return projects.count
-//
-//    }
-//
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "rowTemplate", for: indexPath)
-//        let project = projects[indexPath.row]
-//        cell.textLabel?.text = project.name
-//        return cell
-//    }
-//
 
-    
 }
 
 extension ProjectsListViewController {
@@ -125,12 +109,21 @@ extension ProjectsListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rowTemplate", for: indexPath)
-        cell.backgroundColor = .blue
+        cell.backgroundColor = .magenta
         
         let project = self.project(forIndexPath: indexPath)
         cell.textLabel?.text = project.name
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let project = self.project(forIndexPath: indexPath)
+        
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NewProjectTableViewController") as? NewProjectTableViewController {
+            viewController.project = project
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -149,9 +142,18 @@ extension ProjectsListViewController {
 
             ProjectCoreDataManager.deleteProject(project)
             projects.remove(at: indexPath.row)
+            deleteProject(forIndexPath: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         }
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    
+    
 }
 
 

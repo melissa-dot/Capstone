@@ -23,11 +23,14 @@ class NewProjectTableViewController: UITableViewController {
     let projectCoreDataManager = ProjectCoreDataManager()
     
     override func viewDidLoad() {
-        if let project = project, let customer = customer {
+        
+        if let project = project {
             self.datePicker.date = project.date ?? Date()
             self.notesTextView.text = project.note
             self.nameTextField.text = project.name
-            
+        }
+        
+        if let customer = customer {
             self.addressTextField.text = customer.address
             self.emailTextField.text = customer.email
             self.nameTextField.text = customer.name
@@ -37,12 +40,21 @@ class NewProjectTableViewController: UITableViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if navigationController?.presentingViewController != nil {
+            // Navigation controller is being presented modally
+            let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+            self.navigationItem.leftBarButtonItem = cancelButton
+        }
+    }
     @IBAction func scheduledDateToggle(_ sender: UISwitch) {
         datePicker.isHidden = !sender.isOn
     }
     
     @IBAction func cancel() {
         dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -67,6 +79,8 @@ class NewProjectTableViewController: UITableViewController {
             customer?.email = email
             customer?.name = name
             customer?.phone = phoneNumber
+            ProjectCoreDataManager.save()
+            
         } else {
              _ = Customer(id: UUID().uuidString, email: email, name: name, phone: phoneNumber)
             

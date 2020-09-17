@@ -19,7 +19,6 @@
 		2A7B0A3E24D1C164004ECB88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7B0A3C24D1C164004ECB88 /* LaunchScreen.storyboard */; };
 		2A7B0A4824EC2FF4004ECB88 /* NewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */; };
 		2A7E5EB4250BB97A005B1ADC /* ProjectListOrganized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */; };
-		2AD0E11A24F4919400B26EF4 /* CustomerInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		2A7B0A3F24D1C164004ECB88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectTableViewController.swift; sourceTree = "<group>"; };
 		2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListOrganized.swift; sourceTree = "<group>"; };
-		2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerInfoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +73,6 @@
 				2A7B0A3724D1C161004ECB88 /* Main.storyboard */,
 				2A7E5EB3250BB97A005B1ADC /* ProjectListOrganized.swift */,
 				2A7B0A3524D1C161004ECB88 /* ProjectsListViewController.swift */,
-				2AD0E11924F4919400B26EF4 /* CustomerInfoTableViewController.swift */,
 				2A7B0A4724EC2FF4004ECB88 /* NewProjectTableViewController.swift */,
 				2A5B11E124FE917C00F625B7 /* ProjectCoreDataManager.swift */,
 				2A2D8A7024F4963700FE3BE6 /* CoreData.xcdatamodeld */,
@@ -160,7 +157,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5B11E224FE917C00F625B7 /* ProjectCoreDataManager.swift in Sources */,
-				2AD0E11A24F4919400B26EF4 /* CustomerInfoTableViewController.swift in Sources */,
 				2A7B0A3624D1C161004ECB88 /* ProjectsListViewController.swift in Sources */,
 				2A2D8A7224F4963700FE3BE6 /* CoreData.xcdatamodeld in Sources */,
 				2A2D8A7624F6A2A800FE3BE6 /* Customer.swift in Sources */,

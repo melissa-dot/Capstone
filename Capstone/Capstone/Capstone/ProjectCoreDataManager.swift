@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 struct ProjectCoreDataManager {
-   static func saveNewProject(name: String, date: Date? = nil, note: String? = nil) {
-        _ = Project(name: name, date: date, note: note)
+    static func saveNewProject(name: String, date: Date? = nil, note: String? = nil, phone: String, address: String, email: String) {
+        _ = Project(name: name, date: date, note: note, phone: phone, address: address, email: email)
         save()
     }
         

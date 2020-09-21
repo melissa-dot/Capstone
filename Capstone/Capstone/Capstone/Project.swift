@@ -16,10 +16,16 @@ public class Project: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var name: String
     @NSManaged var note: String
+    @NSManaged var phone: String
+    @NSManaged var address: String
+    @NSManaged var email: String
     
-    convenience init(name: String, date: Date? = nil, note: String? = nil, customer: Customer? = nil, context: NSManagedObjectContext = AppDelegate.context) {
+    convenience init(name: String, date: Date? = nil, note: String? = nil, phone: String, address: String, email: String, customer: Customer? = nil, context: NSManagedObjectContext = AppDelegate.context) {
         self.init(context: context)
         self.name = name
+        self.phone = phone
+        self.address = address
+        self.email = email
         if let date = date {
             self.date = date
         } 

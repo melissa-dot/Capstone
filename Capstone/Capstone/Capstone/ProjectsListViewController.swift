@@ -127,7 +127,7 @@ extension ProjectsListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rowTemplate", for: indexPath)
-        cell.backgroundColor = .magenta
+        cell.backgroundColor = .white
         
         let project = self.project(forIndexPath: indexPath)
         cell.textLabel?.text = project.name

@@ -29,6 +29,9 @@ class NewProjectTableViewController: UITableViewController {
             self.datePicker.date = project.date ?? Date()
             self.notesTextView.text = project.note
             self.nameTextField.text = project.name
+            self.phoneTextField.text = project.phone
+            self.addressTextField.text = project.address
+            self.emailTextField.text = project.email
         }
         
         super.viewDidLoad()
@@ -66,15 +69,17 @@ class NewProjectTableViewController: UITableViewController {
             project.date = date
             project.note = notesTextView.text
             project.name = name
+            project.phone = phoneTextField.text ?? ""
+            project.address = addressTextField.text ?? ""
+            project.email = emailTextField.text ?? ""
 
             ProjectCoreDataManager.save()
-            
+            navigationController?.popViewController(animated: true)
         } else {
             
-            ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text)
-            
+            ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text, phone: phoneTextField.text ?? "", address: addressTextField.text ?? "", email: emailTextField.text ?? "")
+            dismiss(animated: true, completion: nil)
         }
-         dismiss(animated: true, completion: nil)
         self.didAddOrUpdateProject?()
 
     }

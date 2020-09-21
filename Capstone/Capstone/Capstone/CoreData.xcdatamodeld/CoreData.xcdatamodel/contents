@@ -9,14 +9,17 @@
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="customer" inverseEntity="Project"/>
     </entity>
     <entity name="Project" representedClassName=".Project" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="note" attributeType="String" defaultValueString=""/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
         <relationship name="customer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="projects" inverseEntity="Customer"/>
     </entity>
     <elements>
         <element name="Customer" positionX="-54" positionY="18" width="128" height="133"/>
-        <element name="Project" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Project" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

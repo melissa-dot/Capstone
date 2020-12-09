@@ -18,12 +18,12 @@ class Customer: NSManagedObject {
     
     @NSManaged var projects: [Project]
     
-    convenience init(id: String, email: String, name: String, phone: String,context: NSManagedObjectContext = AppDelegate.context)
+    convenience init(email: String, name: String, phone: String,context: NSManagedObjectContext = AppDelegate.context)
     {
         self.init(context: context)
         self.address = address
         self.email = email
-        self.id = id
+        self.id = UUID().uuidString
         self.name = name
         self.phone = phone
     }

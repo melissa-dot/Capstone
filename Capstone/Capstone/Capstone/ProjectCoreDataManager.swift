@@ -10,8 +10,11 @@ import Foundation
 import CoreData
 
 struct ProjectCoreDataManager {
-    static func saveNewProject(name: String, date: Date? = nil, note: String? = nil, phone: String, address: String, email: String) {
-        _ = Project(name: name, date: date, note: note, phone: phone, address: address, email: email)
+    static func saveNewProject(name: String, date: Date? = nil, note: String? = nil, phone: String, address: String, email: String, customer: Customer?) {
+        let project = Project(name: name, date: date, note: note, phone: phone, address: address, email: email)
+        if let customer = customer {
+            project.customer = customer
+        }
         save()
     }
         
@@ -28,7 +31,7 @@ struct ProjectCoreDataManager {
             return projects
 
         } catch {
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch projects: \(error)")
         }
         return []
     }

@@ -127,7 +127,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cell.identifier, for: indexPath)
-        cell.backgroundColor = .magenta
         
         let person = self.person(forIndexPath: indexPath)
         cell.textLabel?.text = person.firstName

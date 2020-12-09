@@ -20,6 +20,7 @@ class NewProjectTableViewController: UITableViewController {
     
     var project: Project?
     let projectCoreDataManager = ProjectCoreDataManager()
+    var customer: Customer? 
     
     var didAddOrUpdateProject : (() -> ())?
     
@@ -72,12 +73,13 @@ class NewProjectTableViewController: UITableViewController {
             project.phone = phoneTextField.text ?? ""
             project.address = addressTextField.text ?? ""
             project.email = emailTextField.text ?? ""
+            
 
             ProjectCoreDataManager.save()
             navigationController?.popViewController(animated: true)
         } else {
             
-            ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text, phone: phoneTextField.text ?? "", address: addressTextField.text ?? "", email: emailTextField.text ?? "")
+            ProjectCoreDataManager.saveNewProject(name: name, date: date, note: notesTextView.text, phone: phoneTextField.text ?? "", address: addressTextField.text ?? "", email: emailTextField.text ?? "", customer: customer)
             dismiss(animated: true, completion: nil)
         }
         self.didAddOrUpdateProject?()

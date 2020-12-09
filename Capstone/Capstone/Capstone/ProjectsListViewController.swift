@@ -14,6 +14,7 @@ class ProjectsListViewController: UITableViewController {
     var projects = [Project]()
     var sortedByDate: [Date: [Project]] = [:]
     var sortedByAlphabet: [String: [Project]] = [:]
+    var customer: Customer?
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -50,7 +51,7 @@ class ProjectsListViewController: UITableViewController {
         let noDateProjects = projects.filter({ $0.date == nil })
         print(noDateProjects)
         sortedByDate[Date.distantPast] = noDateProjects
-        tempProjects.removeAll(where: { $0.date == nil })
+       tempProjects.removeAll(where: { $0.date == nil })
         while tempProjects.count > 0 {
             guard let firstProject = tempProjects.first else { return }
             let projectDate = firstProject.date!
@@ -69,6 +70,7 @@ class ProjectsListViewController: UITableViewController {
         if segue.identifier == "addButtonTapped",
         let navController = segue.destination as? UINavigationController,
         let viewController = navController.topViewController as? NewProjectTableViewController {
+            viewController.customer = customer
             viewController.didAddOrUpdateProject = {
                 self.reloadProjects()
                 
@@ -77,7 +79,10 @@ class ProjectsListViewController: UITableViewController {
         
     }
     func reloadProjects() {
-        projects = ProjectCoreDataManager.fetchAllProjects()
+        if let customer = customer {
+            projects = customer.projects
+        }
+        //projects = ProjectCoreDataManager.fetchAllProjects()
              sortByDate()
         DispatchQueue.main.async {
             self.tableView.reloadData()

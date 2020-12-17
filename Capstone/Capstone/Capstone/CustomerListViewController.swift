@@ -11,7 +11,11 @@ import CoreData
 import UIKit
 
 class CustomerListViewController: UITableViewController {
+    
     var customers = [Customer]()
+    var filteredCustomers: [Customer] = []
+    
+
     
     @objc func alert() {
         
@@ -45,23 +49,43 @@ class CustomerListViewController: UITableViewController {
         title = "Customers"
         
         reloadCustomers()
+        
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search customer"
+        navigationItem.searchController = search
+        definesPresentationContext = true
+        
+    }
+    var isSearchBarEmpty: Bool {
+        return navigationItem.searchController?.searchBar.text?.isEmpty ?? true
+    }
+    
+    func currentCustomers() -> [Customer] {
+        if let searchBar = navigationItem.searchController, searchBar.isActive {
+            return filteredCustomers
+        } else {
+           return customers
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return customers.count
+        return currentCustomers().count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customerCell", for: indexPath)
         
-        let customer = self.customers[indexPath.row]
+        let customer = self.currentCustomers()[indexPath.row]
         cell.textLabel?.text = customer.name
+        cell.detailTextLabel?.text = "\(customer.phone), \(customer.email)"
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let customer = self.customers[indexPath.row]
+        let customer = self.currentCustomers()[indexPath.row]
         
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProjectsListViewController") as? ProjectsListViewController {
             viewController.customer = customer
@@ -93,6 +117,26 @@ class CustomerListViewController: UITableViewController {
         }
     }
     
+}
+
+
+extension CustomerListViewController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    if let searchText = searchController.searchBar.text {
+    filterContentForSearchText(searchText)
+    }
+  }
+    
+    func filterContentForSearchText(_ searchText: String) {
+      filteredCustomers = customers.filter { (customer: Customer) -> Bool in
+        return customer.name.lowercased().contains(searchText.lowercased()) ||
+            customer.phone.contains(searchText.lowercased()) ||
+            customer.email.lowercased().contains(searchText.lowercased())
+            
+      }
+      
+      tableView.reloadData()
+    }
 }
 
 

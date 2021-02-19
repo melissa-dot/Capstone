@@ -25,6 +25,7 @@ class NewProjectTableViewController: UITableViewController {
     var didAddOrUpdateProject : (() -> ())?
     
     override func viewDidLoad() {
+        datePicker.isHidden = true
         
         if let project = project {
             self.datePicker.date = project.date ?? Date()
